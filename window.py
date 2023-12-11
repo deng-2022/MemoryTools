@@ -6,6 +6,7 @@ import webbrowser
 from MemoryNotepad import MemoryNotepad
 from MemoryTranslator import MemoryTranslator
 from MemoryWeather import MemoryWeather
+from MemoryAIChat import AIChat
 
 
 class MemoryTools:
@@ -107,9 +108,9 @@ class MemoryTools:
         button3 = tk.Button(top_frame, text="天气查询", font=("Arial", 12), command=lambda: memory_weather.init())
         button3.pack(side=tk.LEFT, padx=10)
 
-        button4 = tk.Button(top_frame, text="AI对话", font=("Arial", 12))
+        ai_chat = AIChat()
+        button4 = tk.Button(top_frame, text="AI对话", font=("Arial", 12), command=lambda: ai_chat.init())
         button4.pack(side=tk.LEFT, padx=10)
-        button4.bind("<Button-1>", lambda event: self.open_window("AI对话", menu_window))
 
         button5 = tk.Button(bottom_frame, text="图片下载器", font=("Arial", 12))
         button5.pack(side=tk.LEFT, padx=10)
