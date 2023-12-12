@@ -3,10 +3,12 @@ import datetime
 import subprocess
 import webbrowser
 
-from MemoryNotepad import MemoryNotepad
-from MemoryTranslator import MemoryTranslator
-from MemoryWeather import MemoryWeather
-from MemoryAIChat import AIChat
+from component.MemoryNotepad import MemoryNotepad
+from component.MemoryTranslator import MemoryTranslator
+from component.MemoryWeather import MemoryWeather
+from component.MemoryAIChat import AIChat
+from component.MemorySnake import MemorySnake
+from component.HostInfo import HostInfo
 
 
 class MemoryTools:
@@ -14,7 +16,7 @@ class MemoryTools:
         # 创建主窗口
         self.window = tk.Tk()
         self.window.geometry("300x225")
-        self.window.title("Memery Tools")
+        self.window.title("开始菜单")
 
         # 创建上层Frame
         self.top_frame = tk.Frame(self.window)
@@ -76,7 +78,7 @@ class MemoryTools:
     def create_menu_window(self, root):
         menu_window = tk.Toplevel(root)  # 创建新的窗口实例
         # menu_window = tk.Tk()  # 创建新的窗口实例
-        menu_window.title("新窗口")  # 设置新窗口的标题
+        menu_window.title("Memery Tools")  # 设置新窗口的标题
         menu_window.geometry("400x300+500+250")
 
         # 创建上层Frame
@@ -112,13 +114,14 @@ class MemoryTools:
         button4 = tk.Button(top_frame, text="AI对话", font=("Arial", 12), command=lambda: ai_chat.init())
         button4.pack(side=tk.LEFT, padx=10)
 
-        button5 = tk.Button(bottom_frame, text="图片下载器", font=("Arial", 12))
+        memory_snake = MemorySnake()
+        button5 = tk.Button(bottom_frame, text="贪吃蛇", font=("Arial", 12), command=lambda: memory_snake.run())
         button5.pack(side=tk.LEFT, padx=10)
-        button5.bind("<Button-1>", lambda event: self.open_window("图片下载器", menu_window))
 
-        button6 = tk.Button(bottom_frame, text="本机信息", font=("Arial", 12))
+        host_info = HostInfo()
+
+        button6 = tk.Button(bottom_frame, text="本机信息", font=("Arial", 12), command=lambda: host_info.run())
         button6.pack(side=tk.LEFT, padx=10)
-        button6.bind("<Button-1>", lambda event: self.open_window("本机信息", menu_window))
 
         # 创建定时器，每隔1秒更新时间
         menu_window.after(1000, lambda: self.update_time(time_label, menu_window))  # 开始时调用一次update_time函数，之后每秒更新一次时间
