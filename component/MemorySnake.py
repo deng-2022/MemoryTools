@@ -2,7 +2,7 @@ import pygame
 import sys
 import random
 
-
+# 贪吃蛇
 class MemorySnake:
     def __init__(self):
         self.screen_width = 640
@@ -79,7 +79,4 @@ class MemorySnake:
         font = pygame.font.Font(None, 36)
         score_text = font.render(f"Score: {self.score}", True, self.BLACK)
         self.screen.blit(score_text, (10, 10))
-
-# if __name__ == '__main__':
-#     memory_snake = MemorySnake()
-#     memory_snake.run()
+ 

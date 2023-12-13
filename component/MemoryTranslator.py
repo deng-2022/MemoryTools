@@ -2,6 +2,7 @@ import tkinter as tk
 from translate import Translator
 
 
+# 英汉互译
 class MemoryTranslator:
     def __init__(self):
         self.root = None

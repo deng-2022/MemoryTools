@@ -16,6 +16,7 @@ import websocket  # 使用websocket_client
 answer = ""
 
 
+# 智能AI对话
 class Ws_Param(object):
     # 初始化
     def __init__(self, APPID, APIKey, APISecret, Spark_url):
@@ -175,8 +176,21 @@ class AIChat:
     def init(self):
         self.text.clear
         print("-------------------------------------------")
-        print("作者: @Memory ")
+        print("欢迎使用 Memory Notepad 笔记本软件")
+        print("作者: @Memory")
+        print("""  
+              *  
+              (  `  
+              )\))(    (    )       (   (  
+             ((_)()\  ))\  (     (  )(  )\ )  
+             (_()((_)/((_) )\  ' )\(()\(()/(  
+             |  \/  (_)) _((_)) ((_)((_))(_))  
+             | |\/| / -_) '  \() _ \ '_| || |  
+             |_|  |_\___|_|_|_|\___/_|  \_, |  
+                                        |__/  
+             """)
         print("欢迎使用讯飞星火API接口，实现防伪验证！")
+        print("注意：在对话期间，MemoryTools主菜单会陷入短暂卡死状态，关闭对话窗口结束对话后，即可恢复正常")
         print("-------------------------------------------")
 
         input("开始对话吧！(单击Enter键开始)")

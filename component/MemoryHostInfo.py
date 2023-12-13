@@ -3,15 +3,14 @@ import psutil
 from tkinter import Tk, Button, Text
 
 
-class HostInfo:
+# 获取本机信息
+class MemoryHostInfo:
     def __init__(self):
-        self.root = Tk()
-        self.root.title("本机信息")
-        self.text = Text(self.root)
-        self.text.pack()
-        self.button = Button(self.root, text="获取本机信息", command=self.create_window)
-        self.button.pack()
+        self.root = None
+        self.text = None
+        self.button = None
 
+    # 创建窗口
     def create_window(self):
         # 获取本机主机名
         hostname = socket.gethostname()
@@ -55,7 +54,16 @@ class HostInfo:
                 self.text.insert("insert", f"  上传速度： {counters.bytes_sent / 1024:.2f} KB/s")
                 self.text.insert("insert", f"  下载速度： {counters.bytes_recv / 1024:.2f} KB/s")
 
+    # 运行
     def run(self):
+        # 初始化窗口
+        self.root = Tk()
+        self.root.title("本机信息")
+        # 对话框
+        self.text = Text(self.root)
+        self.text.pack()
+        # 本机信息按钮
+        self.button = Button(self.root, text="获取本机信息", command=self.create_window)
+        self.button.pack()
+
         self.root.mainloop()
-
-

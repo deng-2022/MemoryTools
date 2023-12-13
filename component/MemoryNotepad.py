@@ -2,6 +2,7 @@ import tkinter as tk
 import tkinter.filedialog as filedialog
 
 
+# 简易笔记本
 class MemoryNotepad:
     def __init__(self):
         self.window = None

@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import tkinter as tk
 
 
+# 天气查询
 class MemoryWeather:
     def __init__(self):
         # 城市名和链接可以在https://weather.cma.cn/中添加更多城市，名字和链接对应的
@@ -482,5 +483,3 @@ class MemoryWeather:
         print("")
 
         self.window.mainloop()  # 启动主窗口的消息循环，显示窗口并等待用户操作
-
-
