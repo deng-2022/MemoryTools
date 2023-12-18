@@ -21,6 +21,7 @@ class MemoryNotepad:
         # 字符数标签
         self.lbl = None
 
+    # 打开本地文件
     def open_file(self):
         file_path = filedialog.askopenfilename(
             filetypes=[
@@ -35,35 +36,36 @@ class MemoryNotepad:
 
         self.txt_edit.delete("1.0", tk.END)
 
-        with open(
-                file_path,
-                mode="r",
-                encoding="utf-8") as input_file:
-            self.txt_edit.insert(
-                tk.END,
-                input_file.read()
-            )
+        with open(file_path, mode="r", encoding="utf-8") as input_file:
+            self.txt_edit.insert(tk.END,
+                                 input_file.read()
+                                 )
         self.window.title(f"{file_path} - 记事本")
 
+    # 保存文件到本地
     def save_as_file(self):
         file_path = filedialog.asksaveasfilename(defaultextension=".txt",
                                                  filetypes=[("Text files", "*.txt"), ("All files", "*.*")])
         if not file_path:
             return
+
         with open(file_path, mode="w", encoding="utf-8") as output_file:
             output_file.write(self.txt_edit.get("1.0", tk.END))
+
         self.window.title(f"{file_path} - 记事本")
 
-    # 统计字数
+    # 统计字符数量
     def count_chars_in_text(self):
         text = self.txt_edit.get("1.0", tk.END)  # 获取 Text 组件中的所有文本
         char_count = len(text) - 1  # 计算文本的长度
+
         print(f"字符数: {char_count}")
         self.var_lbl.set(f"字符数: {char_count}")  # 显示文本
 
+    # 初始化 MemoryNotepad 窗口
     def init(self):
         self.window = tk.Tk()
-        self.window.title("记事本")
+        self.window.title("Memory Notepad")
 
         # 左侧操作区
         self.operate_frame = tk.Frame(master=self.window, bd=2)
@@ -118,9 +120,6 @@ class MemoryNotepad:
         print("新的功能还在逐步开发完善中，敬请期待~")
         print("您不需要理会这个窗口，祝您使用愉快")
 
+        # 生成窗口
         self.window.mainloop()
 
-
-if __name__ == '__main__':
-    memoryNotepad = MemoryNotepad()
-    memoryNotepad.init()

@@ -1,8 +1,7 @@
-# -*- coding: utf-8 -*-
 from tkinter import scrolledtext
+from bs4 import BeautifulSoup
 
 import requests
-from bs4 import BeautifulSoup
 import tkinter as tk
 
 
@@ -416,40 +415,51 @@ class MemoryWeather:
     # 显示城市天气
     def show_weather_info(self, city):
         if not city:
-            self.text_area.delete('1.0', tk.END)  # 清空文本框内容
-            self.text_area.insert(tk.END, "请先输入要查询的城市名")  # 插入错误信息
+            # 清空文本框内容
+            self.text_area.delete('1.0', tk.END)
+            # 插入错误信息
+            self.text_area.insert(tk.END, "请先输入要查询的城市名")
             return
 
         print(f"{city}")
         try:
+            # 判断查询的城市名是否存在
             url = 'https://weather.cma.cn/web/weather/' + self.href_list[self.text_list.index(city)]
+            # 执行天气查询
             weather_info = self.get_weather_info(url)
 
             if weather_info:
                 print("城市：", city)
                 print(weather_info)
-
-            if weather_info:
-                self.text_area.delete('1.0', tk.END)  # 清空文本框内容
-                self.text_area.insert(tk.END, f"城市：{city}\n")  # 插入新的天气信息
-                self.text_area.insert(tk.END, weather_info)  # 插入新的天气信息
+                # 清空文本框内容
+                self.text_area.delete('1.0', tk.END)
+                # 插入新的天气信息
+                self.text_area.insert(tk.END, f"城市：{city}\n")
+                # 插入新的天气信息
+                self.text_area.insert(tk.END, weather_info)
 
         except ValueError:
-            self.text_area.delete('1.0', tk.END)  # 清空文本框内容
-            self.text_area.insert(tk.END, f"很抱歉，暂时查找不到城市\"{city}\"的天气状况")  # 插入错误信息
+            # 清空文本框内容
+            self.text_area.delete('1.0', tk.END)
+            # 插入错误信息
+            self.text_area.insert(tk.END, f"很抱歉，暂时查找不到城市\"{city}\"的天气状况")
             raise ValueError(f"很抱歉，暂时查找不到城市\"{city}\"的天气状况")
 
-    # 窗口初始化
+    # 初始化窗口
     def init(self):
-        # 窗口初始化
-        self.window = tk.Tk()  # 创建主窗口
-        self.window.title("Weather Information")  # 设置窗口标题
-        self.window.geometry("600x320")  # 设置窗口大小（宽x高）
-        self.window.resizable(False, False)  # 禁止调整窗口大小
+        # # 创建主窗口
+        self.window = tk.Tk()
+        # 设置窗口标题
+        self.window.title("Memory Weather")
+        # 设置窗口大小（宽x高）
+        self.window.geometry("600x320")
+        # 禁止调整窗口大小
+        self.window.resizable(False, False)
 
-        # 天气状况
-        self.text_area = scrolledtext.ScrolledText(self.window, height=10)  # 创建滚动文本框，用于显示天气信息
-        self.text_area.pack(fill=tk.BOTH, expand=True)  # 添加滚动文本框到主窗口，并自动调整大小以适应窗口大小变化
+        # 创建滚动文本框，用于显示天气信息
+        self.text_area = scrolledtext.ScrolledText(self.window, height=10)
+        # 添加滚动文本框到主窗口，并自动调整大小以适应窗口大小变化
+        self.text_area.pack(fill=tk.BOTH, expand=True)
 
         # 城市名标签提示
         self.keyword_label = tk.Label(self.window, text="城市名:")
@@ -482,4 +492,5 @@ class MemoryWeather:
         print("----------------------------------------------------------------")
         print("")
 
+        # 生成窗口
         self.window.mainloop()  # 启动主窗口的消息循环，显示窗口并等待用户操作
